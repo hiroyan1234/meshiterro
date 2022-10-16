@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-  get 'users/show'
-  get 'users/edit'
-  get 'users/showedit'
-  resources :post_images, only: [:new, :create, :index, :show, :destroy]
+  resources :post_images, only: [:new, :create, :index, :show, :destroy] do
+      resources :post_comments, only: [:create, :destroy]
+    end
   resources :users, only: [:show, :edit, :update]
   devise_for :users
   root to: 'homes#top'
